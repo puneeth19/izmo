@@ -1,0 +1,136 @@
+String Functions
+===================
+1) concat()
+
+SELECT CONCAT("this", "is", "SQL") AS test;  
+select concat('puneeth ','S',' Masali') as test;
+select concat(first_name,' ',last_name) as fullname from employees;
+select concat(first_name,'->',salary) as salarylist from employees;
+
+2)length()
+
+SELECT LENGTH('MYSQL') as  lenth;
+select length("my name is puneeth")as test;
+select first_name,salary,length(salary) as length from employees;
+select first_name,salary,length(salary) as length,length(first_name) as "name_length" from employees;
+
+3)trim()
+
+SELECT TRIM('  SQL   ');
+select trim("    shivu    ") as test;
+select ltrim("   shivu    ") as test;
+select rtrim("   shivu    ") as test;
+
+4)UpperCase-->ucase() or upper()
+
+SELECT UPPER('mysql')->MYSQL
+select ucase('i am puneeth') as test;
+select ucase(first_name) from employees;
+select ucase(concat(first_name,last_name)) from employees;
+
+
+5)LowerCase-->lcase() or lower()
+
+SELECT LOWER('MYSQL')->mysql
+select lcase('I AM PUNEETH') as test;
+select lcase(last_name) from employees;
+select lcase(concat(first_name,last_name)) from employees;
+
+6)substring()
+
+SELECT SUBSTRING('database' FROM -4 FOR 2); ->ba
+SELECT SUBSTRING('database' ,4, 2);  ->ab
+SELECT SUBSTRING('database' from 4); ->abase
+select substring('puneeth masali',7) as string;
+SELECT SUBSTRING('database',-4,2) as string;
+SELECT SUBSTRING('database',4,3) as string;
+select substring(last_name,2) as substring from employees;
+select substring(first_name,3,1) as substring from employees;
+
+7)rpad()
+
+SELECT RPAD('sql',5,'!');->sql!!
+select rpad('puneeth',10,'$')as test;
+select rpad(salary,10,'1') as new from employees;
+select salary,rpad(salary,10,'1') as new from employees;
+
+8)lpad()
+
+SELECT LPAD('sql',5,'!');->!!sql
+select lpad('puneeth',10,'M') as test;
+select first_name,lpad(first_name,10,'-') from employees;
+======================================================================
+
+Number Function
+================
+1)Mod()
+SELECT MOD(29,2);->1
+select mod(11,2) as output;
+select salary,mod(salary,3) as output from employees;
+
+2)ROUND()
+SELECT ROUND(26.298, 2);->26.30
+SELECT ROUND(26.298, -1);->30
+SELECT ROUND(23.298, -1);->20
+
+
+
+
+
+
+-- select if(condition,true,false)
+--  select if(12>15,'yes','no') as test;
+-- select if(17>15,'yes','no') as test;
+-- select salary,if(salary>10000 and salary < 17000,'Good','Bad') as "comment" from employees;
+/* select salary , case
+when salary>17000 then "very good"
+when salary>10000 then "good"
+when salary >5000 then "ok"
+else "bad"
+end as "comment" from employees;
+*/
+-- select ifnull(10/0,'wrong') as test;
+-- select commission_pct,ifnull(commission_pct,0) as "value" from employees; 
+-- select salary,commission_pct,salary+ifnull(commission_pct,0) as "monthly income" from employees;
+-- select commission_pct,ifnull(commission_pct,'wrong') from employees;
+-- select if(condition,true,false)
+--  select if(12>15,'yes','no') as test;
+-- select if(17>15,'yes','no') as test;
+-- select salary,if(salary>10000 and salary < 17000,'Good','Bad') as "comment" from employees;
+/* select salary , case
+when salary>17000 then "very good"
+when salary>10000 then "good"
+when salary >5000 then "ok"
+else "bad"
+end as "comment" from employees;
+*/
+-- select ifnull(10/0,'wrong') as test;
+-- select commission_pct,ifnull(commission_pct,0) as "value" from employees; 
+-- select salary,commission_pct,salary+ifnull(commission_pct,0) as "monthly income" from employees;
+-- select commission_pct,ifnull(commission_pct,'wrong') from employees;
+-- select extract(day from '1220-09-23') as test;
+-- select extract(month from '2020-09-12') as test;
+-- select extract(year from '2020-09-12') as test;
+-- select extract(year from hire_date) from employees;
+-- select round(54.87,-2) as test;
+-- SELECT DATEDIFF('2010-10-30','2010-11-15')as test;
+-- SELECT DATEDIFF('2010-11-15','2010-10-31')as test;
+-- select timediff('2010-10-31 23:12:12','2010-10-30 15:10:10')as test;
+-- select hire_date from employees where department_id=20;
+-- select (month('2010-12-12') -month('2010-10-12') ) as test;
+-- select (extract(month from'2010-12-12') - extract( month from '2010-10-12') ) as test;
+-- select * from employees;
+-- select employee_id,last_name,salary from employees where salary<(select salary from employees where last_name='Gee');
+-- select job_id from employees
+ -- select hire_date,job_id,last_name from employees where hire_date =(select hire_date from employees where job_id='ac_account' );
+-- select job_id from employees where department_id=90;
+-- select hire_date from employees where job_id in('ad_pres','ad_vp')
+-- select hire_date from employees where job_id = any(select job_id from employees where department_id=90);
+-- select x, from employees where sal> all(a,2000,b,300,5000,)
+ -- select salary from employees where last_name='Cambrault';
+-- select last_name,salary from employees;
+-- select last_name,salary from employees where salary> (select salary from employees where last_name='Austin');
+-- select first_name,last_name from employees order by last_name;
+--  select last_name,salary from employees where salary>any(select salary from employees where last_name='Cambrault');
+-- select last_name,salary from employees where salary>all(select salary from employees where last_name='Cambrault');
+ -- select last_name,salary from employees where salary>any(select salary from employees where last_name='king');
