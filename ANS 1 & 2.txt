@@ -1,0 +1,68 @@
+
+ans 1
+============
+use puneeth;
+
+1. Write a query to display department ID, department name, street address of all departments.
+select department_id,department_name,location_id from departments;
+
+2. Display all locations details along with country Name. Sort records country wise. 
+
+3. Write a query to display last name, department Id and for all employees.
+select last_name,department_id from employees;
+
+4. Create a query to display employees’ first name, job id, salary, proposed salary (afte giving 40% increment)
+select first_name,job_id,salary,salary+(salary*(40/100)) as "proposed_salary" from employees;
+
+5 write a query to find all the employee having e and g in their last name.
+select * from employees where last_name like '%e%' and last_name like '%g%';
+
+6 write a query to display last name in descending order of salary
+select last_name from employees order by salary desc;
+
+7 write a query to display those employee who is earning commission.
+select * from employees where commission_pct is not null;
+
+8. write a query to show id, first name, hire date with descending order of hire date and ascending order of first name.
+select employee_id,first_name,hire_date from employees order by hire_date desc,first_name;
+
+9. write a query to display annual salary of all employee together with salary and last name.
+select salary*12 as "annual_salary", salary,last_name from employees;
+
+10 write a query  to display monthly income as salary with commission
+select (salary+(salary*commission_pct)) as salary from employees;
+
+ 
+ans 2
+===============
+use puneeth;
+
+1.write a query to display employees those are not belong to department 20,90,and 110.
+select * from employees where department_id not in(20,90,110);
+
+2. write a query to generate the report of employees with first name, last name, job id, department id, salary with ascending order of salary and descending order of job id
+select  first_name, last_name, job_id, department_id, salary from employees order by salary,job_id desc;
+
+3. write a query to display those employee getting salary more than 10000 and hired in the month of December.
+select * from employees where salary>10000 and hire_date like '%-12-%';
+
+4 write a query to display number of employee name the column NoOfEmp
+select count(first_name) as "NoOfEmp" from employees;
+
+5 write a query to display name of the maximum salary earner of department 90.
+select max(salary) from employees where department_id=90;
+
+6. write a query to show name of the minimum salary earner along with their hiredate.
+select first_name,hire_date,min(salary) from employees;
+
+7 write a query to show average salary earner
+select avg(salary) from employees;
+
+8 show the departmental maximum salary earner whose salary is higher than 10000
+select max(salary) from employees group by department_id having max(salary)>10000;
+
+9 write a query to the employees having more than 8000 salary and having commission
+select * from employees where salary>8000 and commission_pct is not null;
+
+10 write a query to display name,salary,hire date sort by positional notation
+select first_name,salary,hire_date from employees order by 3;
