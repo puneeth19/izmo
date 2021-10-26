@@ -1,1 +1,2 @@
-# izmo
+# IZMO
+training materials
