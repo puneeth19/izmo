@@ -1,0 +1,61 @@
+use puneeth;
+1) Write a query that display the employee‟s last names with the first letter capitalized and length of the names, for all employees whose name starts with J, A or M. Give an appropriate label. Sort the result by the employee‟s last name. 
+ans)select replace(last_name,substring(last_name,1,1),ucase(substring(last_name,1,1)))as "Modified last name",length(last_name) from employees where last_name like'J%' OR last_name like'A%' OR last_name like'M%' order by last_name;/*1*/
+
+
+2) Create a query to display the last name and salary for all employees. Format the salary to be 15 characters long, left-padded with $, label the column SALARY.
+ans)select last_name,salary,lpad(salary,15,'$') as "SALARY" from employees;/*2*/
+
+
+3) Write a query that produces the following for each employee: <Employee last name>earns <salary> monthly but wants <3 times salary>.Label the column Dream Salary.
+ans)select last_name,salary,3*salary as "Dream Salary" from employees;/*3*/
+
+
+4) Replace 3rd and 6th character of the email with T of all employees who have space in his last name.
+ans)-- select last_name, replace((replace(email,substring(email,3,1),'T')),substring((replace(email,substring(email,3,1),'T')),6,1),'T') as "email" from employees where last_name like '% %';/*4*/
+
+
+5) Replace underscore of job id with “–“of the employees who hired in the month of august.
+ans)select replace(job_id,'_','-') from employees where hire_date like '%-08-%';/*5*/
+
+6) Display first name, last name and initial of the employees. Name the column as initial.
+ans)select first_name,last_name,concat(substring(first_name,1,1),substring(last_name,1,1)) as "initial" from employees;/*6*/
+
+
+7) Replace the 3rd character with ‟X‟ of the employees who have „n‟ (as 3rd letter) in their last name. Name the column modified name. 
+ans)select replace(last_name,substring(last_name,3,1),'"X"')as "modified name" from employees where last_name like '__n%';/*7*/
+
+
+8) Create a query that displays the employee‟s last name and indicates the amount of their annual salaries with „*”.Each asterisk signifies a thousand dollars. Sort the data in descending order of the salary. 
+Label the column EMPLOYEE_AND_THEIR_SALARIES.
+ans)select last_name,lpad('',((salary*12)/1000),'*') as "EMPLOYEE_AND_THEIR_SALARIES"  from employees;/*8*/
+
+
+9) For each employee, display the employee id, salary and salary increased by 15% and expressed as a whole number. Label the column New Salary.  
+ans)select employee_id,salary,round(salary+(salary*(15/100)),-1) as "new salary" from employees;/*9*/
+
+
+10) Modify the above query to add a column that subtracts the old salary from the new salary. Label the column Increase
+ans)select employee_id,salary,round(salary+(salary*(15/100)),-1) as "new salary",round(salary+(salary*(15/100)),-1)-salary as "Increase" from employees;/*10*/
+
+
+11) Create a query that displays the employees‟ last name and commission amount. If an employee does not earn commission put “No Commission”. Label the column COMM. 
+ans)select last_name,commission_pct,if(commission_pct is not null,commission_pct,'No Commission') as "COMM" from employees;/*11*/
+
+
+12) Create a query to display the last name and salary for all employees, format the salary to be 15 character long left padded with '$' right padded with '#'. Label the column "My salary".
+ans)select last_name,rpad(lpad(salary,length(salary)/2+(15/2),'$'),15,'#') as "My Salary" from employees;/*12*/
+
+
+13) Show the employees that have no commission with a 10% raise in their salary (round off the salaries).display result in the following format “The salary of <last name> after 1a 10% raise is <new salary>.
+ans)select concat('the salary of ',last_name,' after 10% raise is ',round(salary+(salary*(10/100)),-1))as "new salary" from employees where commission_pct is null;/*13*/
+
+
+14) Show all employees and indicate with “Yes” or “No” whether they receive commission.
+ans)select last_name,if(commission_pct is not null,'yes','No') as "receive commission" from employees;/*14*/
+    
+ 
+ 
+ 
+ 
+ 
